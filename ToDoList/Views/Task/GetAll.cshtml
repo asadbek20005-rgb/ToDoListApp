@@ -1,0 +1,199 @@
+@model List<TaskItem>
+
+@{
+    ViewData["Title"] = "Tasks";
+}
+
+<style>
+    /* ===========================
+       Container
+    =========================== */
+    .table-container {
+        max-width: 1000px;
+        margin: 50px auto;
+        background: #fff;
+        padding: 35px 30px;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        transition: all 0.3s ease-in-out;
+    }
+
+        /* ===========================
+       Heading
+    =========================== */
+        .table-container h2 {
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            color: #333;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        /* ===========================
+       Add Task Button
+    =========================== */
+        .table-container > a {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 12px 25px;
+            background: linear-gradient(45deg, #4CAF50, #2E7D32);
+            color: #fff;
+            font-weight: 600;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+            .table-container > a:hover {
+                background: linear-gradient(45deg, #388E3C, #1B5E20);
+                transform: translateY(-2px);
+            }
+
+    /* ===========================
+       Table
+    =========================== */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        overflow-x: auto;
+    }
+
+    th, td {
+        padding: 15px 12px;
+        border-bottom: 1px solid #e0e0e0;
+        text-align: left;
+        transition: all 0.3s ease;
+    }
+
+    th {
+        background: #f7f9fc;
+        color: #333;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    tbody tr {
+        transition: all 0.3s ease;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        margin-bottom: 10px;
+    }
+
+        tbody tr:hover {
+            background: #f0f7ff;
+            transform: translateY(-2px);
+            cursor: pointer;
+        }
+
+    /* ===========================
+       Action Buttons
+    =========================== */
+    .actions a {
+        display: inline-block;
+        padding: 8px 16px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: all 0.3s;
+        color: #fff;
+        margin-right: 8px;
+    }
+
+        .actions a.edit {
+            background: #2196F3;
+        }
+
+            .actions a.edit:hover {
+                background: #1976d2;
+                transform: translateY(-2px);
+            }
+
+        .actions a.delete {
+            background: #f44336;
+        }
+
+            .actions a.delete:hover {
+                background: #d32f2f;
+                transform: translateY(-2px);
+            }
+
+    /* ===========================
+       Responsive Table
+    =========================== */
+    media (max-width: 768px) {
+        table, thead, tbody, th, td, tr
+
+    {
+        display: block;
+    }
+
+    thead tr {
+        display: none;
+    }
+
+    tbody tr {
+        margin-bottom: 20px;
+        border: none;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        padding: 15px;
+        border-radius: 15px;
+    }
+
+    td {
+        padding: 10px 10px 10px 50%;
+        text-align: left;
+        position: relative;
+        border: none;
+    }
+
+        td::before {
+            content: attr(data-label);
+            position: absolute;
+            left: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #555;
+            width: 45%;
+        }
+
+    .actions a {
+        margin: 5px 5px 0 0;
+    }
+
+    }
+</style>
+
+<div class="table-container">
+    <h2>Task List</h2>
+
+    <a asp-action="Create">Add New Task</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var task in Model)
+            {
+                <tr>
+                    <td data-label="N">@task.Id</td>
+                    <td data-label="Name">@task.Name</td>
+                    <td data-label="Description">@task.Description</td>
+                    <td data-label="Actions" class="actions">
+                        <a asp-action="Edit" asp-route-id="@task.Id" class="edit">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@task.Id" class="delete">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
