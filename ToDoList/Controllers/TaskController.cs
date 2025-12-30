@@ -22,4 +22,35 @@ public class TaskController(TaskManager taskManager) : Controller
     {
         return View("Create");
     }
+
+    [HttpGet("{id}")]
+    public IActionResult Edit(int id)
+    {
+        var taskItem = taskManager.GetById(id);
+        return View(taskItem);
+    }
+
+
+    [HttpPost("{id}")]
+    public IActionResult Edit(int id,TaskItem task)
+    {
+        taskManager.Update(id, task);
+        return RedirectToAction("GetAll");
+    }
+
+
+    [HttpGet("{id}/delete")]
+    public IActionResult DeleteView(int id)
+    {
+        var item = taskManager.GetById(id);
+        return View(item);
+    }
+
+    [HttpPost("{id}/delete")]
+    public IActionResult Delete(int id)
+    {
+        taskManager.Delete(id);
+        return RedirectToAction("GetAll");
+    }
+
 }
