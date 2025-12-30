@@ -38,5 +38,6 @@ Asadbek Shermatov
 <img width="1899" height="940" alt="image" src="https://github.com/user-attachments/assets/aedf3e31-ae00-4595-94e1-a3bee47ef146" />
 <img width="1919" height="940" alt="image" src="https://github.com/user-attachments/assets/963f1817-ad5d-4ee8-8758-580bfccf5b8f" />
 <img width="1911" height="899" alt="image" src="https://github.com/user-attachments/assets/5bba8168-84ef-42a4-8bd1-54926309887e" />
-![Uploading image.png…]()
+<img width="1911" height="899" alt="image" src="https://github.com/user-attachments/assets/cbd910bd-d2c9-4adf-bcd0-8012bd07a40a" />
+
 
